@@ -4,14 +4,18 @@ import agent from "../../agent";
 
 export default function Result(props) {
 	const [image,setImg] = useState(null)
-	
-	const getImage = async  () => {
-		 await agent.Image.get(props.filename);
+	const initStatus = {
+		loading: false,
+		success: false,
+		error: false
 	}
-	return <img src={agent.Image.get(props.filename)}  alt={"image"}/>
+	const getImage = async  () => {
+		setImg(await agent.Image.get(props.filename));
+	}
 	if (image) {
 		return <img src={agent.Image.get(props.filename)}  alt={"image"}/>
 	}
+	
 
 	return <Button onClick={getImage} fullWidth>Get new image</Button>
 }

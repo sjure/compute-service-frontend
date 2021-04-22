@@ -131,6 +131,7 @@ export default function Previews(props) {
 				status={status}
 				error={error}
 				handleSubmit={handleSubmit}
+				text={"Blur image"}
 			/>
 		</section>
 	);
