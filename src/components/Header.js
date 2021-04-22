@@ -91,10 +91,8 @@ function Header(props) {
 						{props.appName.toLowerCase()}
 					</Link>
 				</Typography>
-
-					<LoggedOutView currentUser={props.currentUser}/>
-
-					<LoggedInView currentUser={props.currentUser}/>
+					{/*<LoggedOutView currentUser={props.currentUser}/>*/}
+					{/*<LoggedInView currentUser={props.currentUser}/>*/}
 				</Toolbar>
 			</AppBar>
 		</div>

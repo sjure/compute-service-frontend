@@ -3,6 +3,7 @@ import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
+import ImageBlur from "../ServiceBlur";
 
 const YourFeedTab = props => {
   if (props.token) {
@@ -16,7 +17,7 @@ const YourFeedTab = props => {
         <a  href=""
             className={ props.tab === 'feed' ? 'nav-link active' : 'nav-link' }
             onClick={clickHandler}>
-          Your Feed
+          Your services
         </a>
       </li>
     );
@@ -35,7 +36,7 @@ const GlobalFeedTab = props => {
         href=""
         className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
         onClick={clickHandler}>
-        Global Feed
+        All services
       </a>
     </li>
   );
@@ -66,6 +67,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const MainView = props => {
+
+
+  return <ImageBlur/>
+}
+
+const MainView2 = props => {
   return (
     <div className="col-md-9">
       <div className="feed-toggle">
