@@ -3,7 +3,7 @@ import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
-import ImageBlur from "../ServiceBlur";
+import ImageBlur from "../Service";
 
 const YourFeedTab = props => {
   if (props.token) {
