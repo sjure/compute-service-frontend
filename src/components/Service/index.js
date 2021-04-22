@@ -16,7 +16,6 @@ export default function ImageBlur(props) {
 				<Typography variant={"h1"}>Image blur</Typography>
 				<Typography  variant={"h3"} >Drag and drop an image!</Typography>
 				<Previews/>
-				<Button variant="contained" color="primary" onClick={() => console.log("Blur")}> Blur image</Button>
 			</Grid>
 
 		</Grid>

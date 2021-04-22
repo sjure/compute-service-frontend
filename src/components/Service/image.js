@@ -3,6 +3,7 @@ import {useDropzone} from "react-dropzone";
 import './style.css'
 import {makeStyles} from "@material-ui/core/styles";
 import SuccessLoader from "./SuccessLoader";
+import agent from "../../agent";
 
 const thumbsContainer = {
 	display: 'flex',
@@ -70,7 +71,8 @@ export default function Previews(props) {
 		if (files.length === 1){
 			let file = files[0];
 			console.log(file);
-			/*storageRef.child(storageImagesBasePath).put(file).then(() => {
+			agent.Image.post(file).then((r) => {
+				console.log(r)
 					setStatus({...status,success:true,loading:false});
 					setError("");
 					new Promise(r => setTimeout(r, 5000)).then(() => {
@@ -85,7 +87,7 @@ export default function Previews(props) {
 					setStatus(initStatus);
 					setError("");
 				})
-			})*/
+			})
 		}
 		else {
 			setError("You must upload a file");

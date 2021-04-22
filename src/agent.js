@@ -23,8 +23,15 @@ const requests = {
   put: (url, body) =>
     superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
   post: (url, body) =>
-    superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody)
+    superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
+  postFile: (url,file) =>
+    superagent.post(`${API_ROOT}${url}`).use(tokenPlugin).accept('application/json').attach("file",file).then(responseBody),
 };
+
+const Image = {
+  post: (image) =>
+    requests.postFile('/image',image)
+}
 
 const Auth = {
   current: () =>
@@ -92,5 +99,6 @@ export default {
   Comments,
   Profile,
   Tags,
+  Image,
   setToken: _token => { token = _token; }
 };

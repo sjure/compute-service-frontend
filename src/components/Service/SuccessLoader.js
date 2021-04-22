@@ -31,6 +31,6 @@ export default function SuccessLoader(props) {
 		label="submit"
 		maring="normal"
 		onClick={props.handleSubmit}>
-		Save
+		Blur image
 	</Button>
 }
