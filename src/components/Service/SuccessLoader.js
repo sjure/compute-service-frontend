@@ -12,7 +12,7 @@ export default function SuccessLoader(props) {
 		return (
 			<Alert severity="success">
 				<AlertTitle>Success</AlertTitle>
-				Successfully saved
+				Successfully Executed
 			</Alert>)
 	} else if (props.status.error) {
 		return (
@@ -31,6 +31,6 @@ export default function SuccessLoader(props) {
 		label="submit"
 		maring="normal"
 		onClick={props.handleSubmit}>
-		Blur image
+		{props.text}
 	</Button>
 }
