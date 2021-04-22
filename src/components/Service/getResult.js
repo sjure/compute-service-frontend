@@ -15,9 +15,9 @@ export default function Result(props) {
 	const getImage =  () => {
 		setStatus({...status,loading:true})
 		new Promise( async (resolve) => {
-			let res = await agent.Image.get(props.filename);
-			console.log(res);
-			resolve(res);
+			let blob = await (await fetch(agent.Image.get(props.filename))).blob();
+			let imgurl = URL.createObjectURL(blob);
+			resolve(imgurl);
 		}).then(r => {
 			setImg(r);
 			setStatus({...status,success:true,loading:false});
@@ -30,7 +30,7 @@ export default function Result(props) {
 	}
 	const Image = () => {
 		if (image) {
-			return <img src={agent.Image.get(props.filename)}  alt={"image"}/>
+			return <img src={image}  alt={"image"}/>
 		} else {
 			return <div></div>
 		}
