@@ -20,6 +20,8 @@ const requests = {
     superagent.del(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
   get: url =>
     superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
+  getImg: url =>
+    superagent.get(`${API_ROOT}${url}`).use(tokenPlugin),
   put: (url, body) =>
     superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
   post: (url, body) =>
@@ -30,7 +32,9 @@ const requests = {
 
 const Image = {
   post: (image) =>
-    requests.postFile('/image',image)
+    requests.postFile('/image',image),
+  get: (filename) =>
+    `${API_ROOT}/image?name=${filename}`,
 }
 
 const Auth = {

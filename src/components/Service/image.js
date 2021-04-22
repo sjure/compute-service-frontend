@@ -71,13 +71,16 @@ export default function Previews(props) {
 		if (files.length === 1){
 			let file = files[0];
 			console.log(file);
+			console.log(file.name)
+			props.setFileName(file.name);
 			agent.Image.post(file).then((r) => {
 				console.log(r)
 					setStatus({...status,success:true,loading:false});
 					setError("");
-					new Promise(r => setTimeout(r, 5000)).then(() => {
+					new Promise(r => setTimeout(r, 10)).then(() => {
 						setStatus(initStatus);
 						setError("");
+						props.setUploaded(true);
 					})
 				}
 			).catch(e => {
