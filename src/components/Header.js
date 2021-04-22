@@ -1,91 +1,104 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {AppBar, makeStyles, Toolbar, Typography} from "@material-ui/core";
 
 const LoggedOutView = props => {
-  if (!props.currentUser) {
-    return (
-      <ul className="nav navbar-nav pull-xs-right">
+	const classes = useStyles();
+	if (!props.currentUser) {
+		return (
+			<React.Fragment>
+				<Typography variant="h6" className={classes.title}>
+					<Link to="/" className="nav-link">
+						Home
+					</Link>
+				</Typography>
+				<Typography variant="h6" className={classes.title}>
+					<Link to="/login" className="nav-link">
+						Sign in
+					</Link>
+				</Typography>
+				<Typography variant="h6" className={classes.title}>
 
-        <li className="nav-item">
-          <Link to="/" className="nav-link">
-            Home
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            Sign in
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link to="/register" className="nav-link">
-            Sign up
-          </Link>
-        </li>
-
-      </ul>
-    );
-  }
-  return null;
+					<Link to="/register" className="nav-link">
+						Sign up
+					</Link>
+				</Typography>
+			</React.Fragment>
+		);
+	}
+	return null;
 };
 
 const LoggedInView = props => {
-  if (props.currentUser) {
-    return (
-      <ul className="nav navbar-nav pull-xs-right">
+	if (props.currentUser) {
+		return (
+			<React.Fragment>
 
-        <li className="nav-item">
-          <Link to="/" className="nav-link">
-            Home
-          </Link>
-        </li>
+				<Typography variant="h6">
+					<Link to="/" className="nav-link">
+						Home
+					</Link>
+				</Typography>
 
-        <li className="nav-item">
-          <Link to="/editor" className="nav-link">
-            <i className="ion-compose"></i>&nbsp;New Post
-          </Link>
-        </li>
 
-        <li className="nav-item">
-          <Link to="/settings" className="nav-link">
-            <i className="ion-gear-a"></i>&nbsp;Settings
-          </Link>
-        </li>
+				<Link to="/editor" className="nav-link">
+					<i className="ion-compose"></i>&nbsp;New Post
+				</Link>
 
-        <li className="nav-item">
-          <Link
-            to={`/@${props.currentUser.username}`}
-            className="nav-link">
-            <img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username} />
-            {props.currentUser.username}
-          </Link>
-        </li>
 
-      </ul>
-    );
-  }
+				<Link to="/settings" className="nav-link">
+					<i className="ion-gear-a"></i>&nbsp;Settings
+				</Link>
 
-  return null;
+				<Link
+					to={`/@${props.currentUser.username}`}
+					className="nav-link">
+					<img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username}/>
+					{props.currentUser.username}
+				</Link>
+
+			</React.Fragment>
+		);
+	}
+
+	return null;
 };
 
-class Header extends React.Component {
-  render() {
-    return (
-      <nav className="navbar navbar-light">
-        <div className="container">
 
-          <Link to="/" className="navbar-brand">
-            {this.props.appName.toLowerCase()}
-          </Link>
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flexGrow: 1,
+	},
+	menuButton: {
+		marginRight: theme.spacing(2),
+	},
+	title: {
+		flexGrow: 1,
+	},
+}));
 
-          <LoggedOutView currentUser={this.props.currentUser} />
 
-          <LoggedInView currentUser={this.props.currentUser} />
-        </div>
-      </nav>
-    );
-  }
+function Header(props) {
+	const classes = useStyles();
+
+	return (
+		<div className={classes.root}>
+			<AppBar position="static">
+				<Toolbar>
+
+				<Typography variant="h5" className={classes.title}>
+					<Link to="/" className="navbar-brand">
+						{props.appName.toLowerCase()}
+					</Link>
+				</Typography>
+
+					<LoggedOutView currentUser={props.currentUser}/>
+
+					<LoggedInView currentUser={props.currentUser}/>
+				</Toolbar>
+			</AppBar>
+		</div>
+	);
 }
 
 export default Header;
