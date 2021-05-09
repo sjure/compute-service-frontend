@@ -10,6 +10,7 @@ import {
 } from '../../constants/actionTypes';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Services from "../Services";
+import {Typography} from "@material-ui/core";
 
 const Promise = global.Promise;
 
@@ -28,6 +29,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch({  type: HOME_PAGE_UNLOADED })
 });
 
+const NotSignedIn = () => {
+  return <Typography variant={"h3"} >{"You are not signed in, please sign in to use the services."}</Typography>
+}
+
 class Home extends React.Component {
   componentWillMount() {
     const tab = this.props.token ? 'feed' : 'all';
@@ -42,6 +47,7 @@ class Home extends React.Component {
     this.props.onUnload();
   }
 
+
   render() {
     return (
       <div className="home-page">
@@ -51,8 +57,9 @@ class Home extends React.Component {
 
         <div className="container page">
           <div className="row">
-            <MainView />
-            <Services/>
+            {this.props.currentUser ? <Services/> : <NotSignedIn/>}
+            {/*<MainView />*/}
+
           </div>
         </div>
 

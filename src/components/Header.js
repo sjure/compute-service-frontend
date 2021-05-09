@@ -38,6 +38,7 @@ const LoggedInView = props => {
 					<Link to="/" className="nav-link">
 						Home
 					</Link>
+
 				</Typography>
 
 
@@ -50,10 +51,11 @@ const LoggedInView = props => {
 					<i className="ion-gear-a"></i>&nbsp;Settings
 				</Link>
 
+
 				<Link
 					to={`/@${props.currentUser.username}`}
 					className="nav-link">
-					<img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username}/>
+					<img src={props.currentUser.image} className="user-pic"/>
 					{props.currentUser.username}
 				</Link>
 
@@ -91,8 +93,8 @@ function Header(props) {
 						{props.appName.toLowerCase()}
 					</Link>
 				</Typography>
-					{/*<LoggedOutView currentUser={props.currentUser}/>*/}
-					{/*<LoggedInView currentUser={props.currentUser}/>*/}
+					<LoggedOutView currentUser={props.currentUser}/>
+					<LoggedInView currentUser={props.currentUser}/>
 				</Toolbar>
 			</AppBar>
 		</div>
