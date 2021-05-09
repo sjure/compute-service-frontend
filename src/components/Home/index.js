@@ -9,6 +9,7 @@ import {
   APPLY_TAG_FILTER
 } from '../../constants/actionTypes';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Services from "../Services";
 
 const Promise = global.Promise;
 
@@ -51,6 +52,7 @@ class Home extends React.Component {
         <div className="container page">
           <div className="row">
             <MainView />
+            <Services/>
           </div>
         </div>
 

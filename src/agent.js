@@ -88,9 +88,13 @@ const Comments = {
     requests.get(`/articles/${slug}/comments`)
 };
 
+
+const Services = {
+  getALl: () =>
+    requests.get('/services/'),
+};
+
 const Profile = {
-  follow: username =>
-    requests.post(`/profiles/${username}/follow`),
   get: username =>
     requests.get(`/profiles/${username}`),
   unfollow: username =>
@@ -104,5 +108,6 @@ export default {
   Profile,
   Tags,
   Image,
+  Services,
   setToken: _token => { token = _token; }
 };
