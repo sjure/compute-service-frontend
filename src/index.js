@@ -1,20 +1,23 @@
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import React from 'react';
-import { store, history} from './store';
+import {history, store} from './store';
 
-import { Route, Switch } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
-
+import {Route, Switch} from 'react-router-dom';
+import {ConnectedRouter} from 'react-router-redux';
+import {ThemeProvider } from '@material-ui/core/styles';
 import App from './components/App';
+import {theme} from "./theme";
 
 ReactDOM.render((
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Switch>
-        <Route path="/" component={App} />
-      </Switch>
-    </ConnectedRouter>
-  </Provider>
+	<Provider store={store}>
+		<ThemeProvider theme={theme}>
+			<ConnectedRouter history={history}>
+				<Switch>
+					<Route path="/" component={App}/>
+				</Switch>
+			</ConnectedRouter>
+		</ThemeProvider>
+	</Provider>
 
 ), document.getElementById('root'));
