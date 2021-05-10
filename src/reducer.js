@@ -11,11 +11,8 @@ import service from './reducers/service';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
-  article,
-  articleList,
   auth,
   common,
-  editor,
   home,
   profile,
   settings,

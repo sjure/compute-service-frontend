@@ -42,10 +42,6 @@ const LoggedInView = props => {
 				</Typography>
 
 
-				<Link to="/editor" className="nav-link">
-					<i className="ion-compose"></i>&nbsp;New Post
-				</Link>
-
 
 				<Link to="/settings" className="nav-link">
 					<i className="ion-gear-a"></i>&nbsp;Settings
