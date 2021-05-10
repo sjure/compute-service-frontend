@@ -103,6 +103,10 @@ const Profile = {
     requests.del(`/profiles/${username}/follow`)
 };
 
+const Token = {
+  getToken: () => token
+}
+
 export default {
   Articles,
   Auth,
@@ -111,5 +115,6 @@ export default {
   Tags,
   Image,
   Services,
+  Token,
   setToken: _token => { token = _token; }
 };

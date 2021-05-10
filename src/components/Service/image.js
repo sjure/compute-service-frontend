@@ -88,7 +88,7 @@ export default function Previews(props) {
 					new Promise(r => setTimeout(r, 10)).then(() => {
 					}).then(() => {
 						return new Promise( async (resolve) => {
-							let blob = await (await fetch(agent.Image.get(file.name,serviceId))).blob();
+							let blob = await (await fetch(agent.Image.get(file.name,serviceId),{headers:{"authorization":`Token ${agent.Token.getToken()}`}})).blob();
 							let imgurl = URL.createObjectURL(blob);
 							setUploaded(true);
 							resolve(imgurl);
