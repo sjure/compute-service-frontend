@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {Grid, makeStyles, Typography} from "@material-ui/core";
+import {CircularProgress, Grid, makeStyles, Typography} from "@material-ui/core";
 import {theme} from "../theme";
 import {useParams} from "react-router-dom";
 import agent from "../agent";
 import {store} from "../store";
 import {SERVICE_SELECTED} from "../constants/actionTypes";
+import ImageBlur from "./Service";
 
 
 const useStyle = makeStyles(theme => ({
@@ -16,25 +17,33 @@ const useStyle = makeStyles(theme => ({
 	}
 }))
 
+function select(state) {
+	return state.service
+}
+
 export  function Services(props) {
 	const classes = useStyle(theme)
+	const [isLoaded,setLoaded] = useState(false)
 	let { service } = useParams();
+	const {fullName,fields,path} = select(store.getState());
 
 	useEffect(() => {
 		agent.Services.getService(service).then((services) => {
-			console.log(services)
 			store.dispatch({type:SERVICE_SELECTED,payload:services})
-
+			setLoaded(true)
 		})
 	},[])
-	console.log(service)
-	console.log("-------------------------------------------------")
 
-	return (
-		<Grid container spacing={2} alignItems={"center"} dir={"column"}>
-			<Grid item xs>
-				<Typography variant={"h1"} >{service}</Typography>
+	if (!isLoaded) {
+		return <CircularProgress color="secondary" />
+	}else {
+		return (
+			<Grid container spacing={2} alignItems={"center"} dir={"column"}>
+				<Grid item xs>
+					<Typography color={"secondary"} variant={"h3"}>{fullName}</Typography>
+					<ImageBlur/>
+				</Grid>
 			</Grid>
-		</Grid>
-	)
+		)
+	}
 }

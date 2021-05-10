@@ -48,6 +48,7 @@ const useStyles = makeStyles(theme => ({
 export default function Previews(props) {
 	const classes = useStyles()
 	const [files, setFiles] = useState([]);
+	const [uploaded,setUploaded] = useState(false)
 	const initStatus = {
 		loading: false,
 		success: false,
@@ -56,6 +57,8 @@ export default function Previews(props) {
 
 	const [error,setError] =useState("");
 	const [status, setStatus] = useState(initStatus)
+	const [image,setImg] = useState(null)
+
 
 	const {getRootProps, getInputProps} = useDropzone({
 		accept: 'image/*',
@@ -72,15 +75,25 @@ export default function Previews(props) {
 			let file = files[0];
 			console.log(file);
 			console.log(file.name)
-			props.setFileName(file.name);
 			agent.Image.post(file).then((r) => {
 				console.log(r)
-					setStatus({...status,success:true,loading:false});
 					setError("");
 					new Promise(r => setTimeout(r, 10)).then(() => {
-						setStatus(initStatus);
-						setError("");
-						props.setUploaded(true);
+					}).then(() => {
+						return new Promise( async (resolve) => {
+							let blob = await (await fetch(agent.Image.get(file.name))).blob();
+							let imgurl = URL.createObjectURL(blob);
+							setUploaded(true);
+							resolve(imgurl);
+						}).then(r => {
+							setImg(r);
+							setStatus({...status,success:true,loading:false});
+						}).catch(e => {
+							setStatus({...status,error:true,errorMessage:e.message})
+							new Promise(r => setTimeout(r, 5000)).then(() => {
+								setStatus(initStatus);
+							})
+						});
 					})
 				}
 			).catch(e => {
@@ -118,21 +131,34 @@ export default function Previews(props) {
 		files.forEach(file => URL.revokeObjectURL(file.preview));
 	}, [files]);
 
+	const Image = () => {
+		if (image) {
+			console.log(image)
+			return <img src={image}  alt={"image"}/>
+		} else {
+			return <div></div>
+		}
+
+	}
 	return (
 		<section className="container">
+			{!uploaded ? <React.Fragment>
 			<div className={classes.dropzone} {...getRootProps({className: 'dropzone'})}>
 				<input {...getInputProps()} />
 				<p className={classes.secondaryColor}>Drag 'n' drop some files here, or click to select files</p>
 			</div>
 			<aside style={thumbsContainer}>
 				{thumbs}
-			</aside>
-			<SuccessLoader
-				status={status}
-				error={error}
-				handleSubmit={handleSubmit}
-				text={"Blur image"}
-			/>
+			</aside> <SuccessLoader
+					status={status}
+					error={error}
+					handleSubmit={handleSubmit}
+					text={"Blur image"}
+				/>
+			</React.Fragment>
+				:
+			<Image/> }
+
 		</section>
 	);
 }
