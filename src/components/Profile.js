@@ -17,18 +17,6 @@ const EditProfileSettings = props => {
 	return null;
 };
 
-const FollowUserButton = props => {
-  if (props.isUser) {
-    return null;
-  }
-
-  let classes = 'btn btn-sm action-btn';
-  if (props.user.following) {
-    classes += ' btn-secondary';
-  } else {
-    classes += ' btn-outline-secondary';
-  }
-}
 
 
 
@@ -99,12 +87,6 @@ class Profile extends React.Component {
 								<p>{profile.bio}</p>
 
 								<EditProfileSettings isUser={isUser}/>
-								<FollowUserButton
-									isUser={isUser}
-									user={profile}
-									follow={this.props.onFollow}
-									unfollow={this.props.onUnfollow}
-								/>
 
 							</div>
 						</div>
