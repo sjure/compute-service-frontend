@@ -4,6 +4,7 @@ import './style.css'
 import {makeStyles} from "@material-ui/core/styles";
 import SuccessLoader from "./SuccessLoader";
 import agent from "../../agent";
+import {store} from "../../store";
 
 const thumbsContainer = {
 	display: 'flex',
@@ -44,6 +45,9 @@ const useStyles = makeStyles(theme => ({
 		color: theme.palette.secondary.light,
 	}
 }));
+function select(state) {
+	return state.service
+}
 
 export default function Previews(props) {
 	const classes = useStyles()
@@ -54,6 +58,9 @@ export default function Previews(props) {
 		success: false,
 		error: false
 	}
+	const {fullName,fields,path,id} = select(store.getState());
+	const serviceId = id;
+
 
 	const [error,setError] =useState("");
 	const [status, setStatus] = useState(initStatus)
@@ -81,7 +88,7 @@ export default function Previews(props) {
 					new Promise(r => setTimeout(r, 10)).then(() => {
 					}).then(() => {
 						return new Promise( async (resolve) => {
-							let blob = await (await fetch(agent.Image.get(file.name))).blob();
+							let blob = await (await fetch(agent.Image.get(file.name,serviceId))).blob();
 							let imgurl = URL.createObjectURL(blob);
 							setUploaded(true);
 							resolve(imgurl);
