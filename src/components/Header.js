@@ -90,7 +90,7 @@ function Header(props) {
 
 				<Typography variant="h5" className={classes.title}>
 					<Link to="/" className="navbar-brand">
-						{props.appName.toLowerCase()}
+						{props.appName}
 					</Link>
 				</Typography>
 					<LoggedOutView currentUser={props.currentUser}/>

@@ -18,7 +18,7 @@ import {
 } from '../constants/actionTypes';
 
 const defaultState = {
-  appName: 'Compute service',
+  appName: 'Proud Cloud',
   token: null,
   viewChangeCounter: 0
 };

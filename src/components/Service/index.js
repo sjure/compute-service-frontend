@@ -3,7 +3,7 @@ import {Grid, makeStyles, Typography} from "@material-ui/core";
 import Previews from "./image";
 import Result from "./getResult";
 
-export default function ImageBlur(props) {
+export default function  ImageBlur(props) {
 	const [uploaded, setUploaded] = useState(false);
 	const [fileName,setFileName] = useState("");
 	return (

@@ -92,6 +92,8 @@ const Comments = {
 const Services = {
   getALl: () =>
     requests.get('/services/'),
+  getService: (svcId) =>
+    requests.get(`/services/service/${svcId}`)
 };
 
 const Profile = {
