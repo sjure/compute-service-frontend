@@ -30,11 +30,13 @@ const LoggedOutView = props => {
 };
 
 const LoggedInView = props => {
+	const classes = useStyles();
+
 	if (props.currentUser) {
 		return (
 			<React.Fragment>
 
-				<Typography variant="h6">
+				<Typography variant="h6" className={classes.title}>
 					<Link to="/" className="nav-link">
 						Home
 					</Link>
@@ -42,18 +44,21 @@ const LoggedInView = props => {
 				</Typography>
 
 
+				<Typography variant="h6" className={classes.title}>
+					<Link to="/settings" className="nav-link">
+						<i className="ion-gear-a"></i>&nbsp;Settings
+					</Link>
+				</Typography>
 
-				<Link to="/settings" className="nav-link">
-					<i className="ion-gear-a"></i>&nbsp;Settings
-				</Link>
+				<Typography variant="h6" className={classes.title}>
 
-
-				<Link
-					to={`/@${props.currentUser.username}`}
-					className="nav-link">
-					<img src={props.currentUser.image} className="user-pic"/>
-					{props.currentUser.username}
-				</Link>
+					<Link
+						to={`/@${props.currentUser.username}`}
+						className="nav-link">
+						<img src={props.currentUser.image} className="user-pic"/>
+						{props.currentUser.username}
+					</Link>
+				</Typography>
 
 			</React.Fragment>
 		);
@@ -84,11 +89,11 @@ function Header(props) {
 			<AppBar position="static">
 				<Toolbar>
 
-				<Typography variant="h5" className={classes.title}>
-					<Link to="/" className="navbar-brand">
-						{props.appName}
-					</Link>
-				</Typography>
+					<Typography variant="h5" className={classes.title}>
+						<Link to="/" className="navbar-brand">
+							{props.appName}
+						</Link>
+					</Typography>
 					<LoggedOutView currentUser={props.currentUser}/>
 					<LoggedInView currentUser={props.currentUser}/>
 				</Toolbar>
