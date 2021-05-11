@@ -4,7 +4,6 @@ import _superagent from 'superagent';
 const superagent = superagentPromise(_superagent, global.Promise);
 
 const API_ROOT = 'http://localhost:3000/api';
-const API_FLASK = 'http://localhost:8080';
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
@@ -29,8 +28,6 @@ const requests = {
     superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
   postFile: (url,file) =>
     superagent.post(`${API_ROOT}${url}`).use(tokenPlugin).accept('application/json').attach("file",file).then(responseBody),
-  flaskPost: (url,file) =>
-    superagent.post(`${API_FLASK}${url}`).use(tokenPlugin).accept('application/json').attach("file",file).then(responseBody),
 };
 
 const Image = {

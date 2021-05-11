@@ -7,8 +7,7 @@ export default function ImageBlur(props) {
 		<Grid container direction={"row"}>
 			<Grid item xs>
 				<Typography variant={"h3"}>Drag and drop an image!</Typography>
-				<Previews
-				/>
+				<Previews/>
 			</Grid>
 
 		</Grid>

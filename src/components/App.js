@@ -12,6 +12,7 @@ import Settings from '../components/Settings';
 import {store} from '../store';
 import {push} from 'react-router-redux';
 import {Services} from "./ServiceLoader";
+import {makeStyles} from "@material-ui/core";
 
 const mapStateToProps = state => {
 	return {
@@ -50,7 +51,7 @@ class App extends React.Component {
 	render() {
 		if (this.props.appLoaded) {
 			return (
-				<div>
+				<div style={{backgroundColor: '#e16400',height:'100vh'}}>
 					<Header
 						appName={this.props.appName}
 						currentUser={this.props.currentUser}/>

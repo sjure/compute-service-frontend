@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import agent from "../agent";
-import {Grid, makeStyles} from "@material-ui/core";
+import {Grid, makeStyles, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import {theme} from "../theme";
 import { useHistory } from "react-router-dom";
@@ -27,6 +27,7 @@ export default function ServiceList(props) {
 			setServices(services)
 		})
 	},[])
+
 	const selectService = (svc ) => {
 		console.log(svc)
 		store.dispatch({type:SERVICE_SELECTED,payload:svc})
@@ -43,8 +44,11 @@ export default function ServiceList(props) {
 	}
 
 	return (
-		<Grid container dir={"column"} className={classes.topSvcCont} spacing={2}>
-		<ServiceList/>
+		<Grid container direction={"column"} className={classes.topSvcCont} spacing={2}>
+			<Grid item xs><Typography color={"secondary"} variant={"h3"}>{"Computing Services"}</Typography></Grid>
+			<Grid container direction={"row"} spacing={2}>
+				<ServiceList/>
+			</Grid>
 	</Grid>
 	)
 }
