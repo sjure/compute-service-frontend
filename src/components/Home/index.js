@@ -2,7 +2,7 @@ import Banner from './Banner';
 import React from 'react';
 import {connect} from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Services from "../Services";
+import ServiceList from "../ServiceList";
 import {Typography} from "@material-ui/core";
 
 const Promise = global.Promise;
@@ -30,7 +30,7 @@ class Home extends React.Component {
 
 				<div className="container page">
 					<div className="row">
-						{this.props.currentUser ? <Services/> : <NotSignedIn/>}
+						{this.props.currentUser ? <ServiceList/> : <NotSignedIn/>}
 					</div>
 				</div>
 

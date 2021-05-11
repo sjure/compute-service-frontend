@@ -16,7 +16,7 @@ const useStyle = makeStyles(theme => ({
 	}
 }))
 
-export default function Services(props) {
+export default function ServiceList(props) {
 	const [services,setServices] = useState([])
 	const classes = useStyle(theme)
 	const history = useHistory();
