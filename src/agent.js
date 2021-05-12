@@ -33,8 +33,8 @@ const requests = {
 const Image = {
   post: (image) =>
     requests.postFile('/image',image),
-  get: (filename,svc) =>
-    `${API_ROOT}/image/${svc}?name=${filename}`,
+  get: (svc,query) =>
+    `${API_ROOT}/image/${svc}?${query}`,
 }
 
 const Auth = {

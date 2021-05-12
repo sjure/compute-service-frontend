@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import agent from "../agent";
 import {store} from "../store";
 import {SERVICE_SELECTED} from "../constants/actionTypes";
-import ImageBlur from "./Service";
+import Service from "./Service";
 
 
 const useStyle = makeStyles(theme => ({
@@ -27,6 +27,7 @@ export  function Services(props) {
 	let { service } = useParams();
 	const {fullName,fields,path} = select(store.getState());
 
+
 	useEffect(() => {
 		agent.Services.getService(service).then((services) => {
 			store.dispatch({type:SERVICE_SELECTED,payload:services})
@@ -41,7 +42,7 @@ export  function Services(props) {
 			<Grid container spacing={2} alignItems={"center"} dir={"column"}>
 				<Grid item xs>
 					<Typography color={"secondary"} variant={"h3"}>{fullName}</Typography>
-					<ImageBlur/>
+					<Service/>
 				</Grid>
 			</Grid>
 		)
