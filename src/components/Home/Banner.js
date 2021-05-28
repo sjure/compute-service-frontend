@@ -3,7 +3,7 @@ import {Container, makeStyles} from "@material-ui/core";
 
 const useStyles = makeStyles( () => ({
 		banner: {
-			background: "#286086"
+			background: "#b8dfff"
 
 		}
 	}

@@ -51,7 +51,7 @@ class App extends React.Component {
 	render() {
 		if (this.props.appLoaded) {
 			return (
-				<div style={{backgroundColor: '#e16400',height:'100vh'}}>
+				<div style={{backgroundColor: '#c9e7ff',height:'100vh'}}>
 					<Header
 						appName={this.props.appName}
 						currentUser={this.props.currentUser}/>
