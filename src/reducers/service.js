@@ -12,7 +12,8 @@ export default (state = {}, action) => {
 				fullName:action.payload.fullName,
 				path:action.payload.path,
 				fields:action.payload.fields,
-				fileOutput:action.payload.fileOutput
+				fileOutput:action.payload.fileOutput,
+				desc:action.payload.desc
 			};
 		case SERVICE_UNSELECTED:
 			return {};

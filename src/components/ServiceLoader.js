@@ -25,7 +25,8 @@ export  function Services(props) {
 	const classes = useStyle(theme)
 	const [isLoaded,setLoaded] = useState(false)
 	let { service } = useParams();
-	const {fullName,fields,path} = select(store.getState());
+	const {fullName,fields,path,desc} = select(store.getState());
+	console.log(desc)
 
 
 	useEffect(() => {
@@ -42,6 +43,7 @@ export  function Services(props) {
 			<Grid container spacing={2} alignItems={"center"} dir={"column"}>
 				<Grid item xs>
 					<Typography color={"secondary"} variant={"h3"}>{fullName}</Typography>
+					{desc? <Typography color={"secondary"} variant={"h5"}>{desc}</Typography>:null }
 					<Service/>
 				</Grid>
 			</Grid>
