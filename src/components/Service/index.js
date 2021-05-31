@@ -169,7 +169,7 @@ function Service(props) {
 
 	const TexEl = () => {
 		if (textRes) {
-			return <p>{textRes}</p>
+			return textRes.split("\n").map(s => <p>{s}</p>)
 		} else {
 			return <div></div>
 		}
