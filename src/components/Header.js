@@ -55,7 +55,7 @@ const LoggedInView = props => {
 					<Link
 						to={`/@${props.currentUser.username}`}
 						className="nav-link">
-						<img src={props.currentUser.image} className="user-pic"/>
+						<img src={props.currentUser.image} style={{"border-radius": "50%","max-width":"100px"}}/>
 						{props.currentUser.username}
 					</Link>
 				</Typography>
