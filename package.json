@@ -11,7 +11,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "history": "^4.6.3",
-    "marked": "^0.3.6",
+    "marked": "^4.0.10",
     "prop-types": "^15.5.10",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
